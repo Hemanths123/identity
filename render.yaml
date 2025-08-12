@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: identity-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn identity.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: identity.settings
+      - key: PYTHONUNBUFFERED
+        value: 1
+databases:
+  - name: identity-db
+    engine: postgres
+    plan: free
